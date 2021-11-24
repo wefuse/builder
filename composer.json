@@ -1,0 +1,46 @@
+{
+    "name": "wefuse/builder",
+    "description": "An advanced grid like builder field for Craft CMS that uses self created and existing fields.",
+    "type": "craft-plugin",
+    "version": "0.0.1",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "builder"
+    ],
+    "support": {
+        "docs": "https://github.com/wefuse/builder/blob/master/README.md",
+        "issues": "https://github.com/wefuse/builder/issues"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "WeFuse",
+            "homepage": "www.wefuse.com"
+        }
+    ],
+    "require": {
+        "craftcms/cms": "^3.0.0"
+    },
+    "require-dev": {
+      "craftcms/cms": "^3.2.0",
+      "codeception/codeception": "^3.0",
+      "vlucas/phpdotenv": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+          "builder\\builder\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Builder",
+        "handle": "builder",
+        "developer": "WeFuse",
+        "developerUrl": "www.wefuse.com",
+        "documentationUrl": "https://github.com/wefuse/builder/blob/master/README.md",
+        "changelogUrl": "https://raw.githubusercontent.com/wefuse/builder/master/CHANGELOG.md",
+        "class": "builder\\builder\\Builder"
+    }
+}

@@ -1,0 +1,26 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * Builder plugin for Craft CMS
+ *
+ * BuilderField Field Settings
+ *
+ * @author    WeFuse
+ * @copyright Copyright (c) 2021 WeFuse
+ * @link      www.wefuse.com
+ * @package   Builder
+ * @since     0.0.1
+ */
+#}
+
+{% import "_includes/forms" as forms %}
+
+{% do view.registerAssetBundle("builder\\builder\\assetbundles\\builder\\BuilderAsset") %}
+
+{{ forms.textField({
+    label: 'Some Attribute',
+    instructions: 'Enter some attribute here.',
+    id: 'someAttribute',
+    name: 'someAttribute',
+    value: field['someAttribute']})
+}}
