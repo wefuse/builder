@@ -1,18 +1,18 @@
 /**
  * Builder plugin for Craft CMS
  *
- * BuilderField Field JS
+ * Builder Field JS
  *
- * @author    WeFuse
- * @copyright Copyright (c) 2021 WeFuse
- * @link      www.wefuse.com
+ * @author    WeFuse B.V
+ * @copyright Copyright (c) 2021 WeFuse B.V
+ * @link      https://www.wefuse.com
  * @package   Builder
- * @since     0.0.1BuilderBuilderField
+ * @since     0.0.1BuilderBuilder
  */
 
  ;(function ( $, window, document, undefined ) {
 
-    var pluginName = "BuilderBuilderField",
+    var pluginName = "BuilderBuilder",
         defaults = {
         };
 

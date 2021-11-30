@@ -4,20 +4,28 @@
  *
  * An advanced grid like builder field for Craft CMS that uses self created and existing fields.
  *
- * @link      www.wefuse.com
- * @copyright Copyright (c) 2021 WeFuse
+ * @link      https://www.wefuse.com
+ * @copyright Copyright (c) 2021 WeFuse B.V
  */
 
-namespace builder\builder;
+namespace wefuse\builder;
 
-use builder\builder\fields\BuilderField as BuilderFieldField;
+use wefuse\builder\services\BuilderService as BuilderService;
+use wefuse\builder\variables\BuilderVariable;
+use wefuse\builder\twigextensions\BuilderTwigExtension;
+use wefuse\builder\models\Settings;
+use wefuse\builder\fields\BuilderField;
 
 use Craft;
 use craft\base\Plugin;
 use craft\services\Plugins;
 use craft\events\PluginEvent;
+use craft\web\UrlManager;
+use craft\services\Elements;
 use craft\services\Fields;
+use craft\web\twig\variables\CraftVariable;
 use craft\events\RegisterComponentTypesEvent;
+use craft\events\RegisterUrlRulesEvent;
 
 use yii\base\Event;
 
@@ -31,10 +39,13 @@ use yii\base\Event;
  *
  * https://docs.craftcms.com/v3/extend/
  *
- * @author    WeFuse
+ * @author    WeFuse B.V
  * @package   Builder
  * @since     0.0.1
  *
+ * @property  BuilderService $builderService
+ * @property  Settings $settings
+ * @method    Settings getSettings()
  */
 class Builder extends Plugin
 {
@@ -64,7 +75,7 @@ class Builder extends Plugin
      *
      * @var bool
      */
-    public $hasCpSettings = false;
+    public $hasCpSettings = true;
 
     /**
      * Set to `true` if the plugin should have its own section (main nav item) in the control panel.
@@ -92,12 +103,52 @@ class Builder extends Plugin
         parent::init();
         self::$plugin = $this;
 
+        // Add in our Twig extensions
+        Craft::$app->view->registerTwigExtension(new BuilderTwigExtension());
+
+        // Register our site routes
+        Event::on(
+            UrlManager::class,
+            UrlManager::EVENT_REGISTER_SITE_URL_RULES,
+            function (RegisterUrlRulesEvent $event) {
+                $event->rules['siteActionTrigger1'] = 'builder/default';
+            }
+        );
+
+        // Register our CP routes
+        Event::on(
+            UrlManager::class,
+            UrlManager::EVENT_REGISTER_CP_URL_RULES,
+            function (RegisterUrlRulesEvent $event) {
+                $event->rules['cpActionTrigger1'] = 'builder/default/do-something';
+            }
+        );
+
+        // Register our elements
+        Event::on(
+            Elements::class,
+            Elements::EVENT_REGISTER_ELEMENT_TYPES,
+            function (RegisterComponentTypesEvent $event) {
+            }
+        );
+
         // Register our fields
         Event::on(
             Fields::class,
             Fields::EVENT_REGISTER_FIELD_TYPES,
             function (RegisterComponentTypesEvent $event) {
-                $event->types[] = BuilderFieldField::class;
+                $event->types[] = BuilderField::class;
+            }
+        );
+
+        // Register our variables
+        Event::on(
+            CraftVariable::class,
+            CraftVariable::EVENT_INIT,
+            function (Event $event) {
+                /** @var CraftVariable $variable */
+                $variable = $event->sender;
+                $variable->set('builder', BuilderVariable::class);
             }
         );
 
@@ -143,4 +194,29 @@ class Builder extends Plugin
     // Protected Methods
     // =========================================================================
 
+    /**
+     * Creates and returns the model used to store the plugin’s settings.
+     *
+     * @return \craft\base\Model|null
+     */
+    protected function createSettingsModel()
+    {
+        return new Settings();
+    }
+
+    /**
+     * Returns the rendered settings HTML, which will be inserted into the content
+     * block on the settings page.
+     *
+     * @return string The rendered settings HTML
+     */
+    protected function settingsHtml(): string
+    {
+        return Craft::$app->view->renderTemplate(
+            'builder/settings',
+            [
+                'settings' => $this->getSettings()
+            ]
+        );
+    }
 }

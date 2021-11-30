@@ -4,8 +4,8 @@
  *
  * An advanced grid like builder field for Craft CMS that uses self created and existing fields.
  *
- * @link      www.wefuse.com
- * @copyright Copyright (c) 2021 WeFuse
+ * @link      https://www.wefuse.com
+ * @copyright Copyright (c) 2021 WeFuse B.V
  */
 
 namespace Helper;

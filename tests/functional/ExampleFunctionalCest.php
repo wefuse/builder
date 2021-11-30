@@ -1,6 +1,6 @@
 <?php
 
-namespace builder\buildertests\acceptance;
+namespace wefuse\buildertests\acceptance;
 
 use Craft;
 use FunctionalTester;

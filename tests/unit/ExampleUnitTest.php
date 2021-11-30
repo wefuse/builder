@@ -4,22 +4,22 @@
  *
  * An advanced grid like builder field for Craft CMS that uses self created and existing fields.
  *
- * @link      www.wefuse.com
- * @copyright Copyright (c) 2021 WeFuse
+ * @link      https://www.wefuse.com
+ * @copyright Copyright (c) 2021 WeFuse B.V
  */
 
-namespace builder\buildertests\unit;
+namespace wefuse\buildertests\unit;
 
 use Codeception\Test\Unit;
 use UnitTester;
 use Craft;
-use builder\builder\Builder;
+use wefuse\builder\Builder;
 
 /**
  * ExampleUnitTest
  *
  *
- * @author    WeFuse
+ * @author    WeFuse B.V
  * @package   Builder
  * @since     0.0.1
  */

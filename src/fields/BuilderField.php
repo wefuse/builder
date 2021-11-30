@@ -4,14 +4,14 @@
  *
  * An advanced grid like builder field for Craft CMS that uses self created and existing fields.
  *
- * @link      www.wefuse.com
- * @copyright Copyright (c) 2021 WeFuse
+ * @link      https://www.wefuse.com
+ * @copyright Copyright (c) 2021 WeFuse B.V
  */
 
-namespace builder\builder\fields;
+namespace wefuse\builder\fields;
 
-use builder\builder\Builder;
-use builder\builder\assetbundles\builderfieldfield\BuilderFieldFieldAsset;
+use wefuse\builder\Builder;
+use wefuse\builder\assetbundles\builderfield\BuilderFieldAsset;
 
 use Craft;
 use craft\base\ElementInterface;
@@ -21,7 +21,7 @@ use yii\db\Schema;
 use craft\helpers\Json;
 
 /**
- * BuilderField Field
+ * Builder Field
  *
  * Whenever someone creates a new field in Craft, they must specify what
  * type of field it is. The system comes with a handful of field types baked in,
@@ -29,7 +29,7 @@ use craft\helpers\Json;
  *
  * https://craftcms.com/docs/plugins/field-types
  *
- * @author    WeFuse
+ * @author    WeFuse B.V
  * @package   Builder
  * @since     0.0.1
  */
@@ -55,7 +55,7 @@ class BuilderField extends Field
      */
     public static function displayName(): string
     {
-        return Craft::t('builder', 'BuilderField');
+        return Craft::t('builder', 'Builder');
     }
 
     // Public Methods
@@ -226,7 +226,7 @@ class BuilderField extends Field
     {
         // Render the settings template
         return Craft::$app->getView()->renderTemplate(
-            'builder/_components/fields/BuilderField_settings',
+            'builder/_components/fields/Builder_settings',
             [
                 'field' => $this,
             ]
@@ -333,7 +333,7 @@ class BuilderField extends Field
     public function getInputHtml($value, ElementInterface $element = null): string
     {
         // Register our asset bundle
-        Craft::$app->getView()->registerAssetBundle(BuilderFieldFieldAsset::class);
+        Craft::$app->getView()->registerAssetBundle(BuilderFieldAsset::class);
 
         // Get our id and namespace
         $id = Craft::$app->getView()->formatInputId($this->handle);
@@ -347,11 +347,11 @@ class BuilderField extends Field
             'prefix' => Craft::$app->getView()->namespaceInputId(''),
             ];
         $jsonVars = Json::encode($jsonVars);
-        Craft::$app->getView()->registerJs("$('#{$namespacedId}-field').BuilderBuilderField(" . $jsonVars . ");");
+        Craft::$app->getView()->registerJs("$('#{$namespacedId}-field').BuilderBuilder(" . $jsonVars . ");");
 
         // Render the input template
         return Craft::$app->getView()->renderTemplate(
-            'builder/_components/fields/BuilderField_input',
+            'builder/_components/fields/Builder_input',
             [
                 'name' => $this->handle,
                 'value' => $value,

@@ -4,8 +4,8 @@
  *
  * An advanced grid like builder field for Craft CMS that uses self created and existing fields.
  *
- * @link      www.wefuse.com
- * @copyright Copyright (c) 2021 WeFuse
+ * @link      https://www.wefuse.com
+ * @copyright Copyright (c) 2021 WeFuse B.V
  */
 
 /**
@@ -16,7 +16,7 @@
  *
  * http://www.yiiframework.com/doc-2.0/guide-tutorial-i18n.html
  *
- * @author    WeFuse
+ * @author    WeFuse B.V
  * @package   Builder
  * @since     0.0.1
  */

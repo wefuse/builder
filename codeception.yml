@@ -32,7 +32,7 @@ modules:
       migrations: []
       plugins:
         builder:
-          class: '\builder\builder\Builder'
+          class: '\wefuse\builder\Builder'
           handle: builder
       cleanup: true
       transaction: true

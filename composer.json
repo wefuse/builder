@@ -17,8 +17,8 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "WeFuse",
-            "homepage": "www.wefuse.com"
+            "name": "WeFuse B.V",
+            "homepage": "https://www.wefuse.com"
         }
     ],
     "require": {
@@ -31,16 +31,19 @@
     },
     "autoload": {
         "psr-4": {
-          "builder\\builder\\": "src/"
+          "wefuse\\builder\\": "src/"
         }
     },
     "extra": {
         "name": "Builder",
         "handle": "builder",
-        "developer": "WeFuse",
-        "developerUrl": "www.wefuse.com",
+        "developer": "WeFuse B.V",
+        "developerUrl": "https://www.wefuse.com",
         "documentationUrl": "https://github.com/wefuse/builder/blob/master/README.md",
         "changelogUrl": "https://raw.githubusercontent.com/wefuse/builder/master/CHANGELOG.md",
-        "class": "builder\\builder\\Builder"
+        "components": {
+            "builderService": "wefuse\\builder\\services\\BuilderService"
+        },
+        "class": "wefuse\\builder\\Builder"
     }
 }
