@@ -2,7 +2,7 @@
 
 An advanced grid like builder field for Craft CMS that uses self created and existing fields.
 
-![Screenshot](resources/img/plugin-logo.png)
+![Screenshot](packages/resources/img/plugin-logo.png)
 
 ## Requirements
 

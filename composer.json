@@ -8,6 +8,7 @@
         "cms",
         "craftcms",
         "craft-plugin",
+        "wefuse",
         "builder"
     ],
     "support": {
@@ -22,16 +23,19 @@
         }
     ],
     "require": {
+        "composer/composer": "^1.0|^2.0.13",
         "craftcms/cms": "^3.0.0"
     },
     "require-dev": {
       "craftcms/cms": "^3.2.0",
       "codeception/codeception": "^3.0",
-      "vlucas/phpdotenv": "^3.0"
+      "vlucas/phpdotenv": "^3.0",
+      "brainmaestro/composer-git-hooks": "^2.8"
     },
     "autoload": {
         "psr-4": {
-          "wefuse\\builder\\": "src/"
+          "wefuse\\builder\\": "packages/plugin/src/",
+          "wefuse\\test\\builder\\": "packages/plugin/tests/"
         }
     },
     "extra": {
@@ -44,6 +48,14 @@
         "components": {
             "builderService": "wefuse\\builder\\services\\BuilderService"
         },
-        "class": "wefuse\\builder\\Builder"
+        "class": "wefuse\\builder\\Builder",
+        "hasSettings": true,
+        "hasCpSection": true,
+        "hooks": {
+            "pre-commit": [],
+            "commit-msg": "commit message",
+            "pre-push": [],
+            "post-merge": ""
+        }
     }
 }

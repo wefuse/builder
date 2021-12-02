@@ -1,0 +1,34 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * Builder plugin for Craft CMS 3.x
+ *
+ * Builder Settings.twig
+ *
+ * @author    WeFuse B.V
+ * @copyright Copyright (c) 2021 WeFuse B.V
+ * @link      https://www.wefuse.com
+ * @package   Builder
+ * @since     0.0.1
+ */
+#}
+
+{% import "_includes/forms" as forms %}
+
+{% do view.registerAssetBundle("wefuse\\builder\\assetbundles\\builder\\BuilderAsset") %}
+
+<div id="builderConfigurator" class="builder-configurator">
+    {{ forms.field({
+        label: "Builder Configuration"|t('builder'),
+        instructions: "Configure how you'd like the builder to be laid out, by defining the  Define and outline the types of blocks and cards that can be used."|t('builder'),
+        name: 'config',
+    }) }}
+</div>
+{#
+{{ forms.textField({
+    label: 'Some Field',
+    instructions: 'Enter some setting here.',
+    id: 'someAttribute',
+    name: 'someAttribute',
+    value: settings['someAttribute']})
+}} #}

@@ -14,9 +14,14 @@ use wefuse\builder\Builder;
 use wefuse\builder\assetbundles\builderfield\BuilderFieldAsset;
 
 use Craft;
+use craft\base\EagerLoadingFieldInterface;
 use craft\base\ElementInterface;
 use craft\base\Field;
+use craft\base\GqlInlineFragmentFieldInterface;
+use craft\base\GqlInlineFragmentInterface;
+
 use craft\helpers\Db;
+
 use yii\db\Schema;
 use craft\helpers\Json;
 
@@ -33,8 +38,18 @@ use craft\helpers\Json;
  * @package   Builder
  * @since     0.0.1
  */
+
+//  class BuilderField extends Field implements EagerLoadingFieldInterface, GqlInlineFragmentFieldInterface
 class BuilderField extends Field
 {
+
+    // Propogate methods variables
+    const PROPAGATE_METHOD_NONE = 'none';
+    const PROPAGATE_METHOD_SITE_GROUP = 'siteGroup';
+    const PROPAGATE_METHOD_LANGUAGE = 'language';
+    const PROPAGATE_METHOD_ALL = 'all';
+
+
     // Public Properties
     // =========================================================================
 
@@ -49,9 +64,7 @@ class BuilderField extends Field
     // =========================================================================
 
     /**
-     * Returns the display name of this class.
-     *
-     * @return string The display name of this class.
+     * @inheritdoc
      */
     public static function displayName(): string
     {

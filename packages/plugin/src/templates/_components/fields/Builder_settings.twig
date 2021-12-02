@@ -17,10 +17,26 @@
 
 {% do view.registerAssetBundle("wefuse\\builder\\assetbundles\\builder\\BuilderAsset") %}
 
-{{ forms.textField({
+<div id="builderConfigurator" class="builder-configurator">
+    {{ forms.textField({
     label: 'Some Attribute',
     instructions: 'Enter some attribute here.',
     id: 'someAttribute',
     name: 'someAttribute',
     value: field['someAttribute']})
 }}
+
+    {# {{ forms.textField({
+    label: 'Some Attribute1',
+    instructions: 'Enter some attribute1 here.',
+    id: 'someAttribute1',
+    name: 'someAttribute1',
+    value: field['someAttribute+1']})
+}} #}
+
+    {{ forms.field({
+        label: "Builder Configuration"|t('builder'),
+        instructions: "Configure how you'd like the builder to be laid out, by defining and outlining the blocks and cards that can be used."|t('builder'),
+        name: 'config',
+    }) }}
+</div>
