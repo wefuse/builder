@@ -15,6 +15,7 @@ use wefuse\builder\assetbundles\builderfield\BuilderFieldAsset;
 
 use Craft;
 use craft\base\EagerLoadingFieldInterface;
+use craft\base\Element;
 use craft\base\ElementInterface;
 use craft\base\Field;
 use craft\base\GqlInlineFragmentFieldInterface;
@@ -43,10 +44,11 @@ use craft\helpers\Json;
 class BuilderField extends Field
 {
 
-    // Propogate methods variables
+    // Propogate methods
     const PROPAGATE_METHOD_NONE = 'none';
     const PROPAGATE_METHOD_SITE_GROUP = 'siteGroup';
     const PROPAGATE_METHOD_LANGUAGE = 'language';
+    const PROPAGATE_METHOD_CUSTOM = 'custom';
     const PROPAGATE_METHOD_ALL = 'all';
 
 
@@ -86,11 +88,16 @@ class BuilderField extends Field
      */
     public function rules()
     {
-        $rules = parent::rules();
-        $rules = array_merge($rules, [
-            ['someAttribute', 'string'],
-            ['someAttribute', 'default', 'value' => 'Some Default'],
-        ]);
+        $rules = parent::defineRules();
+        $rules[] = [
+            ['propagationMethod'], 'in', 'range' => [
+                self::PROPAGATE_METHOD_NONE,
+                self::PROPAGATE_METHOD_SITE_GROUP,
+                self::PROPAGATE_METHOD_LANGUAGE,
+                self::PROPAGATE_METHOD_CUSTOM,
+                self::PROPAGATE_METHOD_ALL,
+            ],
+        ];
         return $rules;
     }
 

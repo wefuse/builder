@@ -10,12 +10,6 @@
 
 namespace wefuse\builder;
 
-use wefuse\builder\services\BuilderService as BuilderService;
-use wefuse\builder\variables\BuilderVariable;
-use wefuse\builder\twigextensions\BuilderTwigExtension;
-use wefuse\builder\models\Settings;
-use wefuse\builder\fields\BuilderField;
-
 use Craft;
 use craft\base\Plugin;
 use craft\services\Plugins;
@@ -26,6 +20,12 @@ use craft\services\Fields;
 use craft\web\twig\variables\CraftVariable;
 use craft\events\RegisterComponentTypesEvent;
 use craft\events\RegisterUrlRulesEvent;
+
+use wefuse\builder\services\BuilderService;
+use wefuse\builder\variables\BuilderVariable;
+use wefuse\builder\twigextensions\BuilderTwigExtension;
+use wefuse\builder\models\Settings;
+use wefuse\builder\fields\BuilderField;
 
 use yii\base\Event;
 
